@@ -1,0 +1,17 @@
+{
+  "name": "dkblog",
+  "version": "1.0.0",
+  "description": "A simple plain-English blog with separate writer and reader apps",
+  "main": "reader.js",
+  "scripts": {
+    "reader": "node reader.js",
+    "writer": "node writer.js",
+    "start": "node reader.js"
+  },
+  "keywords": ["blog"],
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^11.7.0",
+    "express": "^4.21.2"
+  }
+}
