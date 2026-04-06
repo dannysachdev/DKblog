@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# deploy.sh — Deploy DKblog on a fresh Ubuntu EC2 instance
+# deploy-blog.sh — Deploy DKblog on a fresh Ubuntu EC2 instance
 # Usage: ssh into your EC2 instance, clone the repo, then run:
-#   chmod +x deploy.sh && ./deploy.sh
+#   chmod +x deploy-blog.sh && ./deploy-blog.sh
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
