@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — All Posts</title>
+  <style>
+    body { font-family: sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; }
+    h1 { margin-bottom: 10px; }
+    a { color: #07c; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ddd; }
+    .status-draft { color: #999; }
+    .status-published { color: #2a2; font-weight: bold; }
+    .actions form { display: inline; }
+    .actions button { cursor: pointer; margin-right: 4px; padding: 4px 10px; }
+    .btn-danger { background: #c33; color: #fff; border: none; border-radius: 3px; }
+    .btn-publish { background: #2a2; color: #fff; border: none; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Blog Admin</h1>
+  <p><a href="/admin/new">+ Write a new post</a></p>
+
+  {{#if posts.length}}
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    {{#each posts}}
+    <tr>
+      <td><a href="/admin/edit/{{this.id}}">{{this.title}}</a></td>
+      <td>{{this.created_at}}</td>
+      <td>
+        {{#if this.published}}
+          <span class="status-published">Published</span>
+        {{else}}
+          <span class="status-draft">Draft</span>
+        {{/if}}
+      </td>
+      <td class="actions">
+        {{#if this.published}}
+          <form method="POST" action="/admin/posts/{{this.id}}/unpublish">
+            <button type="submit">Unpublish</button>
+          </form>
+        {{else}}
+          <form method="POST" action="/admin/posts/{{this.id}}/publish">
+            <button type="submit" class="btn-publish">Publish</button>
+          </form>
+        {{/if}}
+        <form method="POST" action="/admin/posts/{{this.id}}/delete" onsubmit="return confirm('Delete this post?')">
+          <button type="submit" class="btn-danger">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+  {{else}}
+  <p>No posts yet. <a href="/admin/new">Write your first post.</a></p>
+  {{/if}}
+</body>
+</html>

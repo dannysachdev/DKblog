@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog</title>
+  <style>
+    body { font-family: Georgia, serif; max-width: 640px; margin: 40px auto; padding: 0 20px; color: #333; }
+    h1 { font-size: 28px; }
+    .post-item { margin-bottom: 24px; }
+    .post-item h2 { margin-bottom: 4px; }
+    .post-item h2 a { color: #111; text-decoration: none; }
+    .post-item h2 a:hover { text-decoration: underline; }
+    .post-date { color: #888; font-size: 14px; }
+    .post-preview { margin-top: 6px; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>Blog</h1>
+
+  {{#if posts.length}}
+    {{#each posts}}
+    <div class="post-item">
+      <h2><a href="/posts/{{this.id}}">{{this.title}}</a></h2>
+      <div class="post-date">{{this.created_at}}</div>
+      <p class="post-preview">{{this.preview}}</p>
+    </div>
+    {{/each}}
+  {{else}}
+    <p>No posts published yet.</p>
+  {{/if}}
+</body>
+</html>
